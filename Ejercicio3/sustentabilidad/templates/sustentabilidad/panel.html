@@ -1,0 +1,343 @@
+<!-- sustentabilidad/templates/sustentabilidad/panel.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoTech 95</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /*Tema Win95*/
+        body.win95-theme {
+            background-color: #008080;
+            font-family: "MS Sans Serif", Arial, Tahoma, sans-serif;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            user-select: none;
+            background-image: none;
+        }
+
+        .win95-window {
+            background-color: #c0c0c0;
+            border-top: 2px solid #dfdfdf;
+            border-left: 2px solid #dfdfdf;
+            border-right: 2px solid #404040;
+            border-bottom: 2px solid #404040;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            width: 480px;
+            padding: 3px;
+        }
+
+        .win95-titlebar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: white;
+            padding: 4px 6px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .win95-title-text {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .win95-buttons {
+            display: flex;
+            gap: 2px;
+        }
+
+        .win95-btn {
+            background-color: #c0c0c0;
+            border-top: 1px solid #ffffff;
+            border-left: 1px solid #ffffff;
+            border-right: 1px solid #404040;
+            border-bottom: 1px solid #404040;
+            width: 18px;
+            height: 16px;
+            font-size: 11px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            cursor: pointer;
+        }
+
+        .win95-btn:active {
+            border-top: 1px solid #404040;
+            border-left: 1px solid #404040;
+            border-right: 1px solid #ffffff;
+            border-bottom: 1px solid #ffffff;
+            padding-top: 1px;
+            padding-left: 1px;
+        }
+
+        .win95-body {
+            padding: 15px;
+        }
+
+        .win95-sunken-panel {
+            background-color: #ffffff;
+            border-top: 2px solid #404040;
+            border-left: 2px solid #404040;
+            border-right: 2px solid #dfdfdf;
+            border-bottom: 2px solid #dfdfdf;
+            padding: 15px;
+            margin-bottom: 15px;
+            min-height: 100px;
+        }
+
+        .metric-row-win {
+            margin: 12px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .label-win {
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .value-win {
+            color: #000080;
+            font-weight: bold;
+            background-color: #e0e0e0;
+            padding: 2px 6px;
+            border: 1px inset #fff;
+        }
+
+        .win95-statusbar {
+            border-top: 1px solid #808080;
+            border-bottom: 1px solid #ffffff;
+            border-left: 1px solid #808080;
+            border-right: 1px solid #ffffff;
+            background-color: #c0c0c0;
+            padding: 3px 6px;
+            font-size: 11px;
+            color: #404040;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+        /*Tema Consola*/
+        body.crt-theme {
+            background-color: #0b0f0e;
+            color: #ff8c00;
+            font-family: 'VT323', monospace;
+            font-size: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+        }
+
+        .crt-container {
+            background-color: #111a14;
+            border: 4px solid #ff8400;
+            padding: 30px;
+            width: 550px;
+            box-shadow: 0 0 20px rgba(255, 106, 0, 0.4), inset 0 0 15px rgba(0, 255, 102, 0.2);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .crt-container::before {
+            content: "SYS_VER 4.1.0 // ECOTECH CO.";
+            display: block;
+            font-size: 14px;
+            color: #bb8206;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            border-bottom: 1px dashed #aa0063;
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            color: #ffd500;
+            font-size: 36px;
+            margin: 0 0 5px 0;
+            text-shadow: 2px 2px #ff0055;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #fff9fb;
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #1e00ff;
+            margin: 15px 0;
+        }
+
+        .metric-row-crt {
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .label-crt {
+            color: #cccccc;
+        }
+
+        .value-crt {
+            color: #ffcc00;
+            font-weight: bold;
+            font-size: 28px;
+            text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+        }
+
+        .blinking-cursor {
+            animation: blink 1s infinite;
+            color: #00ff66;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .footer-controls {
+            position: fixed;
+            bottom: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .theme-toggle-btn, .rickroll-btn {
+            background-color: #222;
+            color: #ffcc00;
+            border: 2px solid #ffcc00;
+            padding: 8px 14px;
+            font-family: 'MS Sans Serif', Arial;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .theme-toggle-btn:hover, .rickroll-btn:hover {
+            background-color: #ffcc00;
+            color: #222;
+        }
+    </style>
+</head>
+<body class="win95-theme" id="main-body">
+    <div class="win95-window" id="view-win95">
+        <div class="win95-titlebar">
+            <div class="win95-title-text">
+                <span>📁</span> EcoTech_Sustentabilidad_v1.0.exe
+            </div>
+            <div class="win95-buttons">
+                <div class="win95-btn" onclick="mostrarMensaje()">_</div>
+                <div class="win95-btn" onclick="mostrarMensaje()">□</div>
+                <div class="win95-btn" onclick="mostrarMensaje()">✕</div>
+            </div>
+        </div>
+
+        <div class="win95-body">
+            <p style="margin-top: 0; font-weight: bold; color: #000;">Reporte Gerencial - EcoTech Solutions</p>
+            
+            <div class="win95-sunken-panel">
+                <div class="metric-row-win">
+                    <span class="label-win">Total Emisiones:</span>
+                    <span class="value-win">{{ total_emisiones }} kgCO2</span>
+                </div>
+
+                <div class="metric-row-win">
+                    <span class="label-win">Planta Mayor Consumo:</span>
+                    <span class="value-win">{{ planta_top }}</span>
+                </div>
+            </div>
+
+            <div style="text-align: right;">
+                <button onclick="alert('Sistema sincronizado con la base de datos central.');" style="background-color: #c0c0c0; border-top: 2px solid #ffffff; border-left: 2px solid #ffffff; border-right: 2px solid #404040; border-bottom: 2px solid #404040; padding: 4px 12px; font-family: 'MS Sans Serif', Arial; font-size: 12px; cursor: pointer;">
+                    Actualizar
+                </button>
+            </div>
+
+            <div class="win95-statusbar">
+                <span>Proceso completado.</span>
+                <span>Listo</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="crt-container" id="view-crt" style="display: none;">
+        <h1>PANEL DE SUSTENTABILIDAD</h1>
+        <div class="subtitle">&gt;&gt; ECOTECH SOLUTIONS - REPORTE GERENCIAL</div>
+        
+        <hr>
+
+        <div class="metric-row-crt">
+            <span class="label-crt">EMISIONES_GLOBALES:</span>
+            <span class="value-crt">{{ total_emisiones }} kgCO2</span>
+        </div>
+
+        <div class="metric-row-crt">
+            <span class="label-crt">PLANTA CON MAYOR CONSUMO:</span>
+            <span class="value-crt">{{ planta_top }}</span>
+        </div>
+
+        <hr>
+        <div style="font-size: 16px; color: #00aa44; text-align: right;">
+            STATUS: OPERATIVO <span class="blinking-cursor">_</span>
+        </div>
+    </div>
+
+    <div class="footer-controls">
+        <button class="theme-toggle-btn" onclick="toggleTheme()">[ 🖥️ Cambiar Tema Win95 / CRT ]</button>
+        <a class="rickroll-btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1&mute=1" target="_blank">[ 🎵 Optimización de Rendimiento ]</a>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.getElementById('main-body');
+            const winView = document.getElementById('view-win95');
+            const crtView = document.getElementById('view-crt');
+
+            if (body.classList.contains('win95-theme')) {
+                body.classList.remove('win95-theme');
+                body.classList.add('crt-theme');
+                winView.style.display = 'none';
+                crtView.style.display = 'block';
+            } else {
+                body.classList.remove('crt-theme');
+                body.classList.add('win95-theme');
+                crtView.style.display = 'none';
+                winView.style.display = 'block';
+            }
+        }
+
+        function mostrarMensaje() {
+            alert("No anda, pero gracias por probar");
+        }
+    </script>
+
+</body>
+</html>
